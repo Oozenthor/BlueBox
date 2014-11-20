@@ -9,7 +9,6 @@ BlueBox::BlueBox(QWidget *parent) :
   this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);  //Disable resize grip in MS windows
   ui->statusLine->setText(tr("Disconnected"));
 
-
   serial = new QSerialPort(this);
   serialDialog = new SerialDialog;
 
@@ -17,10 +16,9 @@ BlueBox::BlueBox(QWidget *parent) :
 
   timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(signalAdamToReadInputs()));
-
-  //connect(serial, SIGNAL(readyRead()), this, SLOT(readData()));
-  //connect(serial, SIGNAL(bytesWritten(qint64)), this, SLOT(readData()));
-  //connect(serial, SIGNAL(getData(QByteArray)), this, SLOT(writeData(QByteArray)));
+  door=false;
+  lamp=false;
+  uvOn=false;
 }
 
 BlueBox::~BlueBox()
